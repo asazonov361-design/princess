@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Для моей Принцессы 💗</title>
+<style>
+:root{--pink:#ff8fb3;--deep:#c94f83;--cream:#fff8f2;--ink:#68465a}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:linear-gradient(145deg,#ffe4ed,#fff4dc 55%,#e9e2ff);overflow-x:hidden}
+.wrap{width:min(920px,92%);margin:auto;padding:34px 0 70px}
+.hero,.panel{background:#ffffffc9;border:2px solid #fff;border-radius:30px;box-shadow:0 16px 45px #bd719333;backdrop-filter:blur(8px)}
+.hero{text-align:center;padding:38px 22px 30px;position:relative;overflow:hidden}
+h1{font-size:clamp(2.2rem,7vw,4.5rem);line-height:1.05;margin:10px 0;color:var(--deep)}
+.subtitle{font-size:1.12rem}
+.cat{font-size:clamp(4rem,12vw,7rem);display:inline-block;animation:bob 2.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(4deg)}}
+.panel{margin-top:22px;padding:26px}
+h2{color:var(--deep);margin:0 0 14px;font-size:1.55rem}
+.letter{font-size:1.12rem;line-height:1.8;white-space:pre-line}
+button{border:0;border-radius:999px;padding:14px 23px;font-size:1rem;font-weight:700;color:white;background:linear-gradient(120deg,#ff8fb3,#d86ca5);box-shadow:0 8px 18px #d86ca544;cursor:pointer;transition:transform .2s}
+button:hover{transform:translateY(-2px) scale(1.02)}
+button:active{transform:scale(.98)}
+.center{text-align:center}
+#missMessage{min-height:54px;margin:18px auto 0;font-size:1.15rem;line-height:1.6;max-width:600px}
+.surprise{display:none;text-align:center;padding:12px 4px}
+.surprise.show{display:block;animation:pop .7s ease both}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.bigheart{font-size:4rem;animation:pulse 1s infinite alternate}
+@keyframes pulse{to{transform:scale(1.18)}}
+footer{text-align:center;padding:26px 8px 0;font-size:.95rem}
+.float{position:fixed;bottom:-40px;pointer-events:none;z-index:5;animation:rise linear forwards}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.paw{color:#e99ab9}
+.small{font-size:.95rem;color:#946b80}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="cat" aria-label="котик"> ฅ^•ﻌ•^ฅ </div>
+    <div class="paw">♡ мяу-мяу ♡</div>
+    <h1>Для моей Принцессы</h1>
+    <p class="subtitle">Маленькое напоминание о большой любви 💗</p>
+    <div style="font-size:2rem">🐾 💕 🐾</div>
+  </section>
+
+  <section class="panel">
+    <h2>💌 Письмо для тебя</h2>
+    <div class="letter">Моя любимая Принцесса!
+
+Если бы я мог, я бы каждый день дарил тебе тысячу поводов улыбаться. Ты очень дорога мне, и даже на расстоянии моё сердце рядом с тобой.
+
+Не грусти и помни: где бы ты ни была, я всегда с тобой рядом. Вспоминай об этом, когда захочется тепла, поддержки или просто почувствовать, что тебя любят.
+
+Ты моё солнышко, моё счастье и самая прекрасная девочка на свете.
+
+Крепко-крепко обнимаю тебя! 💗</div>
+    <p class="small">От того, кто очень-очень тебя любит 🐱</p>
+  </section>
+
+  <section class="panel center">
+    <h2>🐱 Когда соскучишься…</h2>
+    <p>Нажми на кнопочку — котик передаст тебе моё объятие.</p>
+    <button id="missBtn">Нажми, если скучаешь 💞</button>
+    <div id="missMessage" aria-live="polite"></div>
+  </section>
+
+  <section class="panel center">
+    <div class="surprise" id="surprise">
+      <div class="bigheart">💗</div>
+      <h2>А вот и самый главный секрет!</h2>
+      <p style="font-size:1.2rem;line-height:1.7">Из всех мест во Вселенной<br>моё любимое — рядом с тобой.<br><strong>Я люблю тебя, Принцесса!</strong></p>
+      <div style="font-size:3rem">🐱💐🐱</div>
+    </div>
+    <div id="surprisePrompt">
+      <h2>🎁 У тебя есть ещё один сюрприз</h2>
+      <p>Он спрятан за этой кнопкой. Готова?</p>
+      <button id="surpriseBtn">Открыть сюрприз ✨</button>
+    </div>
+  </section>
+  <footer>Сделано с любовью специально для тебя, Принцесса 💕<br><span class="small">P.S. Котик тоже передаёт тебе привет!</span></footer>
+</main>
+<script>
+const messages=[
+ "Обнимаю тебя крепко-крепко! Представь, что котик сейчас устроился у тебя на коленках. 🐈💕",
+ "Я рядом — даже если между нами километры. Ты никогда не одна. 💗",
+ "Отправляю тебе миллион воздушных поцелуев! 😽💋",
+ "Улыбнись, Принцесса. Твоя улыбка — одно из моих любимых чудес. 🌷",
+ "Мысленно держу тебя за руку. Очень люблю и скучаю! 🫶"
+];
+let i=0;
+document.getElementById('missBtn').addEventListener('click',()=>{
+ document.getElementById('missMessage').textContent=messages[i%messages.length];i++;
+ burst(12);
+});
+document.getElementById('surpriseBtn').addEventListener('click',()=>{
+ document.getElementById('surprisePrompt').style.display='none';
+ document.getElementById('surprise').classList.add('show');
+ burst(35);
+});
+function burst(n){
+ const symbols=['💗','💕','💖','♡','🐾'];
+ for(let j=0;j<n;j++){
+  const el=document.createElement('span');el.className='float';
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+'vw';
+  el.style.fontSize=(18+Math.random()*22)+'px';
+  el.style.animationDuration=(3+Math.random()*3)+'s';
+  el.style.animationDelay=(Math.random()*.5)+'s';
+  document.body.appendChild(el);setTimeout(()=>el.remove(),7000);
+ }
+}
+setInterval(()=>{if(Math.random()>.45)burst(1)},1800);
+</script>
+</body>
+</html>
